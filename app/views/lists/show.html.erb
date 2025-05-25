@@ -1,17 +1,48 @@
-<p><%=  @list.name %></p>
-<%= simple_form_for [ @list, @bookmark ] do |f| %>
-  <%= f.input :movie_id, label: :movie, collection: @movies %>
-  <%= f.input :comment, input_html: { min: 20 } %>
-  <%= f.button :submit %>
-<% end %>
-<ul>
-  <% @list.bookmarks.each do |bookmark| %>
-    <%= image_tag "#{bookmark.movie.poster_url}" %>
-    <h3><%= bookmark.movie.title %></h3>
-    <p><%= bookmark.movie.overview %></p>
-    <p><%= bookmark.movie.rating %></p>
-    <br>
-    <p><%= bookmark.comment %></p>
-    <%= link_to "Delete", bookmark, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-  <% end %>
-</ul>
+<div class="container mt-3">
+  <div class="d-flex justify-content-between">
+    <h1><%=  @list.name %></h1>
+    <p class="d-inline-flex gap-1">
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <i class="fa-regular fa-bookmark"></i>
+      </button>
+    </p>
+  </div>
+  <div class="mb-3">
+    <div class="collapse" id="collapseExample">
+      <%= simple_form_for [ @list, @bookmark ] do |f| %>
+        <%= f.input :movie_id, label: :movie, collection: @movies %>
+        <%= f.input :comment, input_html: { min: 20 } %>
+        <%= f.button :submit %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <% @list.bookmarks.each do |bookmark| %>
+      <div class="col-sm-6 col-lg-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <%= image_tag "#{bookmark.movie.poster_url}", class: "card-img-top", alt: "#{bookmark.movie.title} poster" %>
+            <div class="d-flex justify-content-between mt-2">
+              <div class="d-flex gap-2">
+                <h5 class="card-title fw-bold text-truncate"><%= bookmark.movie.title %></h5>
+              </div>
+              <div class="d-flex gap-2">
+                <p class="card-text">
+                  <%= bookmark.movie.rating.round(1) %>
+                  <i class="fa-solid fa-star text-warning"></i>
+                </p>
+              </div>
+            </div>
+            <p class="card-text overflow-scroll" style="height: 100px"><%= bookmark.movie.overview %></p>
+            <p class="card-title fw-bold">Comments</p>
+            <p class="overflow-scroll" style="height: 100px"><%= bookmark.comment %></p>
+            <%= link_to bookmark, class: "btn btn-danger float-end", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <br>
+    <% end %>
+  </div>
+</div>

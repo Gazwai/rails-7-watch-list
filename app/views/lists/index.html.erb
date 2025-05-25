@@ -1,13 +1,29 @@
 <div class="container">
-  <h1>Lists#index</h1>
-  <% @lists.each do |list| %>
-    <p>
-      <%= link_to list.name, list %>
+  <div class="my-3">
+    <p class="d-inline-flex gap-1">
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Make a list
+      </button>
     </p>
-  <% end %>
-  <h2>Make a new list</h2>
-  <%= simple_form_for @list do |f| %>
-    <%= f.input :name %>
-    <%= f.button :submit %>
-  <% end %>
+    <div class="collapse" id="collapseExample">
+      <%= simple_form_for @list do |f| %>
+        <%= f.input :name %>
+        <%= f.button :submit %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <% @lists.each do |list| %>
+      <%= link_to list, class: "col mb-5" do %>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h3 class="card-title">
+              <%= list.name %>
+            </h3>
+          </div>
+          <%= render "shared/carousel", movies: list.movies %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>

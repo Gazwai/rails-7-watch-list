@@ -1,0 +1,9 @@
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <% movies.each_with_index do |movie, index| %>
+      <div class="carousel-item active" data-bs-interval="2000">
+        <img src="<%= movie.poster_url %>" class="d-block w-100" alt="<%= movie.title %>">
+      </div>
+    <% end %>
+  </div>
+</div>
