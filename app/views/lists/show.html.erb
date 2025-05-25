@@ -10,8 +10,8 @@
   <div class="mb-3">
     <div class="collapse" id="collapseExample">
       <%= simple_form_for [ @list, @bookmark ] do |f| %>
-        <%= f.input :movie_id, label: :movie, collection: @movies %>
-        <%= f.input :comment, input_html: { min: 20 } %>
+        <%= f.association :movie %>
+        <%= f.input :comment %>
         <%= f.button :submit %>
       <% end %>
     </div>
