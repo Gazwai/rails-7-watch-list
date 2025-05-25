@@ -4,6 +4,10 @@ class ListsController < ApplicationController
   def index
     @lists = List.all
     @list = List.new
+
+    if params[:query].present?
+      @lists = List.two_level_search(params[:query])
+    end
   end
 
   def show

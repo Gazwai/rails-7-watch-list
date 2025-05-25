@@ -1,14 +1,30 @@
 <div class="container">
   <div class="my-3">
-    <p class="d-inline-flex gap-1">
-      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        Make a list
-      </button>
-    </p>
+    <div class="d-flex w-100 gap-3">
+      <p class="d-inline-flex gap-1">
+        <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          Make a list
+        </button>
+      </p>
+      <div class="col p-0">
+        <div class="container-fluid">
+          <%= simple_form_for :list, url: lists_path, method: :get, html: { class: "d-flex" } do |f| %>
+            <%= f.input :query,
+              as: :string,
+              input_html: { class: "form-control me-2", placeholder: "Type a keyword", value: params[:query] },
+              wrapper: false,
+              label: false,
+              placeholder: "Type a keyword"
+            %>
+            <%= f.button :submit, "Search", class: "btn btn-primary", name: "" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
     <div class="collapse" id="collapseExample">
       <%= simple_form_for @list do |f| %>
         <%= f.input :name %>
-        <%= f.button :submit %>
+        <%= f.button :submit, label: "Make a List", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>
@@ -18,7 +34,7 @@
         <div class="card" style="width: 18rem;">
           <div class="card-body">
             <h3 class="card-title">
-              <%= list.name %>
+              <%= list.name.capitalize %>
             </h3>
           </div>
           <%= render "shared/carousel", movies: list.movies %>
