@@ -18,16 +18,14 @@
   </div>
   <div class="row">
     <% @list.bookmarks.each do |bookmark| %>
-      <div class="col-sm-6 col-lg-4 mb-3">
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
         <div class="card">
           <div class="card-body">
             <%= image_tag "#{bookmark.movie.poster_url}", class: "card-img-top", alt: "#{bookmark.movie.title} poster" %>
             <div class="d-flex justify-content-between mt-2">
+              <h5 class="card-title fw-bold text-truncate"><%= bookmark.movie.title %></h5>
               <div class="d-flex gap-2">
-                <h5 class="card-title fw-bold text-truncate"><%= bookmark.movie.title %></h5>
-              </div>
-              <div class="d-flex gap-2">
-                <p class="card-text">
+                <p class="card-text text-nowrap">
                   <%= bookmark.movie.rating.round(1) %>
                   <i class="fa-solid fa-star text-warning"></i>
                 </p>
