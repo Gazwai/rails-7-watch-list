@@ -2,4 +2,9 @@
 <% @lists.each do |list| %>
   <p><%= list.name %></p>
 <% end %>
+<h2>Make a new list</h2>
+<%= simple_form_for @list do |f| %>
+  <%= f.input :name %>
+  <%= f.button :submit %>
+<% end %>
 <p>Find me in app/views/lists/index.html.erb</p>
