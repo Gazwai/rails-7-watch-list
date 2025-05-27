@@ -30,10 +30,10 @@
   </div>
   <div class="row">
     <% @lists.each do |list| %>
-      <%= link_to list, class: "col-sm-12 col-md-4 col-lg-3 mb-3" do %>
+      <%= link_to list, class: "col-sm-12 col-md-4 col-lg-2 mb-3" do %>
         <div class="card">
           <div class="card-body">
-            <h3 class="card-title">
+            <h3 class="card-title text-truncate text-nowrap">
               <%= list.name.capitalize %>
             </h3>
           </div>
