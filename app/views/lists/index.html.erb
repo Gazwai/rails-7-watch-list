@@ -32,12 +32,12 @@
     <% @lists.each do |list| %>
       <%= link_to list, class: "col-sm-12 col-md-4 col-lg-2 mb-3" do %>
         <div class="card">
-          <div class="card-body">
-            <h3 class="card-title text-truncate text-nowrap">
-              <%= list.name.capitalize %>
-            </h3>
-          </div>
           <%= render "shared/carousel", movies: list.movies, list: list %>
+          <div class="card-body">
+            <p class="card-title">
+              <%= list.name.capitalize %>
+            </p>
+          </div>
         </div>
       <% end %>
     <% end %>

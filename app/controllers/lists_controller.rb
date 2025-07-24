@@ -5,8 +5,8 @@ class ListsController < ApplicationController
     @lists = List.all
     @list = List.new
 
-    if params[:query].present?
-      @lists = List.two_level_search(params[:query])
+    if params[:list].present? && params[:list][:query].present?
+      @lists = List.global_search(params[:list][:query])
     end
   end
 
